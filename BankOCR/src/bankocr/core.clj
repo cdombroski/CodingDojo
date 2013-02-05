@@ -1,4 +1,5 @@
-(ns bankocr.core)
+(ns bankocr.core
+  (:use [clojure.java.io :only [reader]]))
 
 (def digits
   {0
@@ -51,7 +52,17 @@
 (defn digit2number [digit]
   (some #(when (= (val %) digit) (key %)) digits))
 
-(defn read-account-number [instream]
-  (binding [*in* instream]
-    (map digit2number (lines2digits (read-line) (read-line) (read-line)))))
+(defn read-account-numbers []
+  (let [rdr (reader *in*)
+        read-next-account
+        (fn read-next-account []
+          (if-let [line1 (.readLine rdr)]
+            (let [line2 (.readLine rdr)
+                  line3 (.readLine rdr)
+                  _ (.readLine rdr)]
+              (cons (lines2digits line1 line2 line3) (lazy-seq (read-next-account))))
+            (.close rdr)))]
+    (read-next-account)))
+
+
 

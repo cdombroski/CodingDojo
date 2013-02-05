@@ -1,6 +1,7 @@
 (ns bankocr.core-test
-  (:require clojure.test))
+  (:use bankocr.core clojure.test))
 
+(def case1-accounts
 " _  _  _  _  _  _  _  _  _
 | || || || || || || || || |
 |_||_||_||_||_||_||_||_||_|
@@ -44,4 +45,9 @@
     _  _     _  _  _  _  _ 
   | _| _||_||_ |_   ||_||_|
   ||_  _|  | _||_|  ||_| _|
-"
+
+")
+
+(deftest case1 []
+  (is (= [000000000 111111111 222222222 333333333 444444444 555555555 666666666 777777777 888888888 999999999 123456789]
+        (with-in-str case1-accounts (read-account-numbers)))))
