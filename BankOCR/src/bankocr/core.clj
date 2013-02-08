@@ -2,46 +2,46 @@
   (:use [clojure.java.io :only [reader]]))
 
 (def digits
-  {0
-   [" _ "
+  {[" _ "
     "| |"
     "|_|"]
-   1
+   0
    ["   "
     "  |"
     "  |"]
-   2
+   1
    [" _ "
     " _|"
     "|_ "]
-   3
+   2
    [" _ "
     " _|"
     " _|"]
-   4
+   3
    ["   "
     "|_|"
     "  |"]
-   5
+   4
    [" _ "
     "|_ "
     " _|"]
-   6
+   5
    [" _ "
     "|_ "
     "|_|"]
-   7
+   6
    [" _ "
     "  |"
     "  |"]
-   8
+   7
    [" _ "
     "|_|"
     "|_|"]
-   9
+   8
    [" _ "
     "|_|"
-    " _|"]})
+    " _|"]
+   9})
 
 (defn lines2digits [line1 line2 line3]
   (for [x (range 9)]
@@ -50,7 +50,7 @@
      (.substring line3 (* x 3) (+ (* x 3) 3))]))
 
 (defn digit2number [digit]
-  (some #(when (= (val %) digit) (key %)) digits))
+  (get digits digit))
 
 (defn checksum [account]
   (zero? (mod (reduce + (map-indexed (fn [idx num]
