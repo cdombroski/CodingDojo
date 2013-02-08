@@ -49,3 +49,15 @@
           [9 9 9 9 9 9 9 9 9]
           [1 2 3 4 5 6 7 8 9]]
         (read-account-numbers (java.io.StringReader. case1-accounts)))))
+
+(def case2-accounts (str
+                      "    _  _  _  _  _  _  _  _ \n"
+                      "|_||_   ||_ | ||_|| || || |\n"
+                      "  | _|  | _||_||_||_||_||_|\n\n"
+                      " _  _     _  _        _  _ \n"
+                      "|_ |_ |_| _|  |  ||_||_||_ \n"
+                      "|_||_|  | _|  |  |  | _| _|\n\n"))
+
+(deftest case2 []
+  (is (= [true false]
+        (map checksum (read-account-numbers (java.io.StringReader. case2-accounts))))))

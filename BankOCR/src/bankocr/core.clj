@@ -52,6 +52,11 @@
 (defn digit2number [digit]
   (some #(when (= (val %) digit) (key %)) digits))
 
+(defn checksum [account]
+  (zero? (mod (reduce + (map-indexed (fn [idx num]
+               (* (inc idx) num)) (reverse account)))
+           11)))
+
 (defn read-account-numbers [file]
   (let [rdr (reader file)
         read-next-account
@@ -63,6 +68,3 @@
               (cons (map digit2number (lines2digits line1 line2 line3)) (lazy-seq (read-next-account))))
             (.close rdr)))]
     (read-next-account)))
-
-
-
