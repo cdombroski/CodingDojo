@@ -57,6 +57,16 @@
                (* (inc idx) num)) (reverse account)))
            11)))
 
+(defn check-accounts [accounts]
+  (map (fn [account]
+         (let [parsed-account (replace {nil \?} account)]
+           (concat parsed-account
+             (if (some #{\?} parsed-account)
+               [:ill]
+               (when-not (checksum parsed-account)
+                 [:err])))))
+    accounts))
+
 (defn read-account-numbers [file]
   (let [rdr (reader file)
         read-next-account
@@ -65,6 +75,7 @@
             (let [line2 (.readLine rdr)
                   line3 (.readLine rdr)
                   _ (.readLine rdr)]
-              (cons (map digit2number (lines2digits line1 line2 line3)) (lazy-seq (read-next-account))))
+              (cons (map digit2number (lines2digits line1 line2 line3))
+                (lazy-seq (read-next-account))))
             (.close rdr)))]
     (read-next-account)))

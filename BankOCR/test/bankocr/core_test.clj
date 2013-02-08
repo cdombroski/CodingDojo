@@ -61,3 +61,23 @@
 (deftest case2 []
   (is (= [true false]
         (map checksum (read-account-numbers (java.io.StringReader. case2-accounts))))))
+
+(def case3-accounts (str
+                      case2-accounts
+                      " _  _  _  _  _  _  _  _    \n"
+                      "| || || || || || || ||_   |\n"
+                      "|_||_||_||_||_||_||_| _|  |\n\n"
+                      "    _  _  _  _  _  _     _ \n"
+                      "|_||_|| || ||_   |  |  | _ \n"
+                      "  | _||_||_||_|  |  |  | _|\n\n"
+                      "    _  _     _  _  _  _  _ \n"
+                      "  | _| _||_| _ |_   ||_||_|\n"
+                      "  ||_  _|  | _||_|  ||_| _ \n\n"))
+
+(deftest case3 []
+  (is (= [[4 5 7 5 0 8 0 0 0]
+          [6 6 4 3 7 1 4 9 5 :err]
+          [0 0 0 0 0 0 0 5 1]
+          [4 9 0 0 6 7 7 1 \? :ill]
+          [1 2 3 4 \? 6 7 8 \? :ill]]
+        (check-accounts (read-account-numbers (java.io.StringReader. case3-accounts))))))
