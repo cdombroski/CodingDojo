@@ -52,15 +52,15 @@
 (defn digit2number [digit]
   (some #(when (= (val %) digit) (key %)) digits))
 
-(defn read-account-numbers []
-  (let [rdr (reader *in*)
+(defn read-account-numbers [file]
+  (let [rdr (reader file)
         read-next-account
         (fn read-next-account []
           (if-let [line1 (.readLine rdr)]
             (let [line2 (.readLine rdr)
                   line3 (.readLine rdr)
                   _ (.readLine rdr)]
-              (cons (lines2digits line1 line2 line3) (lazy-seq (read-next-account))))
+              (cons (map digit2number (lines2digits line1 line2 line3)) (lazy-seq (read-next-account))))
             (.close rdr)))]
     (read-next-account)))
 
