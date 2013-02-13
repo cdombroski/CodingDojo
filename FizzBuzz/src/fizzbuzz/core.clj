@@ -1,4 +1,4 @@
 (ns fizzbuzz.core)
 
 (defn fizzbuzz []
-  (range 100))
+  (range 1 101))
