@@ -43,7 +43,16 @@
                  (conj init-number :amb (set ambiguous)))))))
     accounts))
 
+(defn read-lines [f]
+  (let [read-line
+        (fn this [^java.io.BufferedReader rdr]
+          (lazy-seq
+            (if-let [line (.readLine rdr)]
+              (cons line (this rdr))
+              (.close rdr))))]
+    (read-line (reader f))))
+
 (defn read-account-numbers [file]
-  (let [account-digits (partition 3 4 (line-seq (reader file)))]
+  (let [account-digits (partition 3 4 (read-lines file))]
     (for [account account-digits]
       (map digit2number (lines2digits account)))))
