@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/BankOCR/BankOCR.iml" filepath="$PROJECT_DIR$/BankOCR/BankOCR.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BankOCR/bankocr.iml" filepath="$PROJECT_DIR$/BankOCR/bankocr.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FizzBuzz/fizzbuzz.iml" filepath="$PROJECT_DIR$/FizzBuzz/fizzbuzz.iml" />
     </modules>
   </component>
 </project>
