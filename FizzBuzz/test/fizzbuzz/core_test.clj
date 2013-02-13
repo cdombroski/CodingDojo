@@ -1,7 +1,9 @@
 (ns fizzbuzz.core-test
   (:use clojure.test
-        FizzBuzz.core))
+        fizzbuzz.core))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(deftest sequence-is-100-items []
+  (let [test (fizzbuzz)]
+    (is (= (count test) 100))))
+
+(run-tests)
