@@ -2,11 +2,11 @@
   (:use [clojure.java.io :only [reader]]
         [bankocr.numbers]))
 
-(defn lines2digits [^String line1 ^String line2 ^String line3]
-  (for [x (range 9)]
-    [(.substring line1 (* x 3) (+ (* x 3) 3))
-     (.substring line2 (* x 3) (+ (* x 3) 3))
-     (.substring line3 (* x 3) (+ (* x 3) 3))]))
+(defn lines2digits [lines]
+  (apply #(map (fn [bit1 bit2 bit3]
+                 [(apply str bit1) (apply str bit2) (apply str bit3)])
+            %1 %2 %3)
+    (map #(partition 3 %) lines)))
 
 (defn digit2number [digit]
   {:number (get digits digit) :digit digit})
@@ -44,14 +44,6 @@
     accounts))
 
 (defn read-account-numbers [file]
-  (let [^java.io.BufferedReader rdr (reader file)
-        read-next-account
-        (fn read-next-account []
-          (if-let [line1 (.readLine rdr)]
-            (let [line2 (.readLine rdr)
-                  line3 (.readLine rdr)
-                  _ (.readLine rdr)]
-              (cons (map digit2number (lines2digits line1 line2 line3))
-                (lazy-seq (read-next-account))))
-            (.close rdr)))]
-    (read-next-account)))
+  (let [account-digits (partition 3 4 (line-seq (reader file)))]
+    (for [account account-digits]
+      (map digit2number (lines2digits account)))))
