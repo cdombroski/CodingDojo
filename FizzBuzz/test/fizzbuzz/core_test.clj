@@ -10,4 +10,9 @@
   (let [test (fizzbuzz)]
     (is (= (first test) 1))))
 
+(deftest multiples-of-fifteen-are-fizzbuzz []
+  (let [test (fizzbuzz)]
+    (doseq [n (range 14 101 15)]
+      (is (= "fizzbuzz" (nth test n))))))
+
 (run-tests)

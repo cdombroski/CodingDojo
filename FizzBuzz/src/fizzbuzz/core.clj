@@ -1,4 +1,7 @@
 (ns fizzbuzz.core)
 
 (defn fizzbuzz []
-  (range 1 101))
+  (for [n (range 1 101)]
+    (cond
+      (zero? (mod n 15)) "fizzbuzz"
+      :else n)))
