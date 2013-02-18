@@ -15,4 +15,9 @@
     (doseq [n (range 14 101 15)]
       (is (= "fizzbuzz" (nth test n))))))
 
+(deftest multiples-of-three-contain-fizz []
+  (let [test (fizzbuzz)]
+    (doseq [n (range 2 101 3)]
+      (is (re-matches #"fizz.*" (nth test n))))))
+
 (run-tests)
