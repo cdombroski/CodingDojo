@@ -20,4 +20,9 @@
     (doseq [n (range 2 101 3)]
       (is (re-matches #"fizz.*" (nth test n))))))
 
+(deftest multiples-of-five-contain-buzz []
+  (let [test (fizzbuzz)]
+    (doseq [n (range 4 101 5)]
+      (is (re-matches #".*buzz" (nth test n))))))
+
 (run-tests)
