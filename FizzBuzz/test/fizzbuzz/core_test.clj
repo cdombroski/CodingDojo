@@ -1,6 +1,6 @@
 (ns fizzbuzz.core-test
-  (:use clojure.test
-        fizzbuzz.core))
+  (:require [clojure.test :refer :all ]
+            [fizzbuzz.core :refer :all ]))
 
 (deftest sequence-is-100-items []
   (let [test (fizzbuzz)]
