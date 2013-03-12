@@ -1,5 +1,6 @@
 (ns bankocr.core-test
-  (:use bankocr.core clojure.test))
+  (:require [bankocr.core :refer :all ]
+            [clojure.test :refer :all ]))
 
 (def case1-accounts (str
                       " _  _  _  _  _  _  _  _  _ \n"
