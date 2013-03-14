@@ -1,4 +1,5 @@
 (ns potter.core)
 
 (defn price
-  ([] 0))
+  ([] 0)
+  ([x] 8))
