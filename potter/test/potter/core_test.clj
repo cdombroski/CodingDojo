@@ -9,4 +9,9 @@
   (are [a] (= 8 (price a))
     0 1 2 3 4))
 
+(deftest no-discount-for-same-book-more-than-once []
+  (are [x y] (= x (price y))
+    16 [0 0]
+    24 [1 1 1]))
+
 (run-tests)

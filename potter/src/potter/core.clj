@@ -2,4 +2,7 @@
 
 (defn price
   ([] 0)
-  ([x] 8))
+  ([x]
+    (if (coll? x)
+      (* 8 (count x))
+      8)))
