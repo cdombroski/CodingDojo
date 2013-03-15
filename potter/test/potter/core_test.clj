@@ -6,12 +6,17 @@
   (is (zero? (price))))
 
 (deftest one-book-costs-eight []
-  (are [a] (= 8 (price a))
-    0 1 2 3 4))
+  (are [a] (== 8 (price a))
+    [0] [1] [2] [3] [4]))
 
 (deftest no-discount-for-same-book-more-than-once []
-  (are [x y] (= x (price y))
+  (are [x y] (== x (price y))
     16 [0 0]
     24 [1 1 1]))
+
+(deftest two-book-discount []
+  (are [a] (== (* 2 8 0.95) (price a))
+    [0 1]
+    [2 3]))
 
 (run-tests)
