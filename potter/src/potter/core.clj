@@ -24,5 +24,5 @@
       (for [[k v] init-groups]
         (case k
           (3 5) {k (- v pairs-3-5)}
-          4 {k (+ v pairs-3-5)}
+          4 {k (+ v (* 2 pairs-3-5))}
           :else {k v}))))
