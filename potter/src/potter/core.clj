@@ -29,6 +29,6 @@
         pairs-3-5 (min (get init-groups 4) (get init-groups 2))] ;paired groups of 3 and 5 are better as pairs of 4
       (for [[k v] init-groups]
         (case k
-          (3 5) {k (- v pairs-3-5)}
-          4 {k (+ v (* 2 pairs-3-5))}
+          (2 4) {k (- v pairs-3-5)}
+          3 {k (+ v (* 2 pairs-3-5))}
           {k v}))))
