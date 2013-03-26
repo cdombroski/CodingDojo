@@ -3,7 +3,7 @@
         roman-numerals.core))
 
 (deftest single-digits []
-  (are [x y] (= y (number-to-roman x))
+  (are [x y] (and (= y (number-to-roman x)) (= x (roman-to-numeral y)))
     1 "I"
     2 "II"
     3 "III"
@@ -16,7 +16,7 @@
     0 ""))
 
 (deftest tens-digit []
-  (are [x y] (= y (number-to-roman x))
+  (are [x y] (and (= y (number-to-roman x)) (= x (roman-to-numeral y)))
     10 "X"
     20 "XX"
     30 "XXX"
@@ -28,7 +28,7 @@
     90 "XC"))
 
 (deftest hundreds-digit []
-  (are [x y] (= y (number-to-roman x))
+  (are [x y] (and (= y (number-to-roman x)) (= x (roman-to-numeral y)))
     100 "C"
     200 "CC"
     300 "CCC"
@@ -40,10 +40,11 @@
     900 "CM"))
 
 (deftest thousands-digit []
-  (are [x y] (= y (number-to-roman x))
+  (are [x y] (and (= y (number-to-roman x)) (= x (roman-to-numeral y)))
     1000 "M"
     2000 "MM"
     3000 "MMM"))
 
 (deftest acceptance []
-  (= "MCMXCIX" (number-to-roman 1999)))
+  (is (= "MCMXCIX" (number-to-roman 1999)))
+  (is (= 1999 (roman-to-numeral "MCMXCIX"))))
