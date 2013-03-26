@@ -11,6 +11,7 @@
         <option value="file://$PROJECT_DIR$/FizzBuzz/project.clj" />
         <option value="file://$PROJECT_DIR$/potter/project.clj" />
         <option value="file://$PROJECT_DIR$/roman-numerals/project.clj" />
+        <option value="file://$PROJECT_DIR$/roman-calculator/project.clj" />
       </list>
     </option>
   </component>
